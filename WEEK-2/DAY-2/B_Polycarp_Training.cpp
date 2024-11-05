@@ -2,25 +2,32 @@
 using namespace std;
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int n;
-    cin >> n;
-    vector<int> contests(n);
-    for (int i = 0; i < n; i++)
+    cin>>n;
+    multiset<int> ml;
+    for(int i=0;i<n;i++)
     {
-        cin >> contests[i];
+        int x;
+        cin>>x;
+        ml.insert(x);
     }
-    sort(contests.begin(), contests.end());
-    
-    int day = 1;
-    int count = 0;
-    for(int i = 0; i < n; i++)
+    int ans = 0, problem = 1;
+    while(!ml.empty())
     {
-        if(contests[i] >= day)
+        auto LB = ml.lower_bound(problem);
+        if(LB != ml.end())
         {
-            count++;
-            day++;
+            ans++;
+            ml.erase(LB);
         }
+        else
+        {
+            break;
+        }
+        problem ++;
     }
-    cout << count << endl;
+    cout<<ans<<endl;
     return 0;
 }

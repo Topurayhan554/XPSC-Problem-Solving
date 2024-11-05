@@ -5,26 +5,26 @@ int main()
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int t;
-    cin >> t;
-    while (t--)
+    cin>>t;
+    while(t--)
     {
         int n;
-        cin >> n;
+        cin>>n;
         map<int, int> cnt;
-        for (int i = 1;i <= n;i++)
+        for(int i=1;i<=n;i++)
         {
             int x;
-            cin >> x;
-            cnt[x]++;
+            cin>>x;
+            cnt[x] ++;
         }
         priority_queue<int> pq;
-        for (auto [x, y] : cnt)
+        for(auto[x, y] : cnt)
         {
             pq.push(y);
         }
-        while (!pq.empty())
+        while(!pq.empty())
         {
-            if (pq.size() < 2)
+            if(pq.size() < 2)
             {
                 break;
             }
@@ -33,24 +33,25 @@ int main()
             pq.pop();
             y = pq.top();
             pq.pop();
-            x--, y--;
-            if (x >= 1)
+            x--;
+            y--;
+
+            if(x >= 1)
             {
                 pq.push(x);
             }
-            if (y >= 1)
+            if(y >= 1)
             {
                 pq.push(y);
             }
         }
-
         int ans = 0;
-        while (!pq.empty())
+        while(!pq.empty())
         {
             ans += pq.top();
             pq.pop();
         }
-        cout << ans << '\n';
-   }
-   return 0;
+        cout<<ans<<endl;
+    }
+    return 0;
 }

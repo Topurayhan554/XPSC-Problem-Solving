@@ -2,47 +2,47 @@
 using namespace std;
 int main()
 {
-
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-
-    int n, customerNo = 1;
-    cin >> n;
-    set<pair<int, int>> s;
+    int n, costomerNo = 1;
+    cin>>n;
+    set<pair<int,int>> s;
     multiset<pair<int, int>> ml;
     vector<int> ans;
-    for (int i = 1;i <= n;i++)
+    for(int i=1;i<=n;i++)
     {
         int type;
-        cin >> type;
-        if (type == 1)
+        cin>>type;
+        if(type == 1)
         {
             int money;
-            cin >> money;
-            s.insert({ customerNo,money });
-            ml.insert({ money,-customerNo });
-            customerNo++;
+            cin>>money;
+            s.insert({costomerNo, money});
+            ml.insert({money, -costomerNo});
+            costomerNo++;
         }
-        else if (type == 2)
+        else if(type == 2)
         {
             int pos = s.begin()->first, money = s.begin()->second;
             ans.push_back(pos);
             s.erase(s.begin());
-            ml.erase({ money,-pos });
+            ml.erase({money, -pos});
+            
         }
         else
         {
             int pos = -ml.rbegin()->second, money = ml.rbegin()->first;
             ans.push_back(pos);
             ml.erase(--ml.end());
-            s.erase({ pos,money });
+            s.erase({pos, money});
         }
+        
     }
-
-    for (auto value : ans)
+    for(auto val : ans)
     {
-        cout << value << " ";
+        cout<<val<<" ";
     }
-    cout << '\n';
-   return 0;
+    cout<<endl;
+    
+    return 0;
 }

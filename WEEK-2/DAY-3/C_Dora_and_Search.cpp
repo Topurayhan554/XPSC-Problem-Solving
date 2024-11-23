@@ -2,6 +2,8 @@
 using namespace std;
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     int t;
     cin >> t;
     while (t--)
@@ -14,12 +16,14 @@ int main()
             cin >> a[i];
         }
         bool found = false;
-        if (n >= 2) {
+        if (n >= 2)
+        {
             for (int i = 0; i < n; i++)
             {
                 if ((a[i] < a[i + 1] && a[i + 1] > a[i + 2]) || 
-                    (a[i] > a[i + 1] && a[i + 1] < a[i + 2])) {
-                    cout << (i + 1) << " " << (i + 2) << endl; // 1-based index
+                    (a[i] > a[i + 1] && a[i + 1] < a[i + 2]))
+                {
+                    cout << (i + 1) << " " << (i + 2) << endl;
                     found = true;
                     break;
                 }

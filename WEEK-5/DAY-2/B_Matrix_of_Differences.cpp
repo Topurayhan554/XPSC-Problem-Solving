@@ -43,6 +43,7 @@ int main()
                 for(int j=(n+x) - 1;j>=x;j--)
                 {
                     cout<<v[j]<<" ";
+                    
                 }
                 cout<<endl;
                 x += n;

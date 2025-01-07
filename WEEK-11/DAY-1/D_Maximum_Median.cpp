@@ -20,7 +20,7 @@ int main()
         {
             cnt += (a[i] < median ? (median - a[i]) : 0);
         }
-        return false;
+        return cnt <= k;
     };
     sort(a.begin(), a.end());
     ll l = 1, r = 2e9, mid, ans;

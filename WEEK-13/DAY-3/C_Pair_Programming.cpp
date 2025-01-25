@@ -1,7 +1,5 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
-
 void solve() {
     int t;
     cin >> t;
@@ -18,23 +16,26 @@ void solve() {
 
         bool valid = true;
 
-        // Merge both sequences a and b
         while (i < n || j < m) {
             if (i < n && a[i] == 0) {
-                result.push_back(0); // Add a new line from Monocarp
+                result.push_back(0);
                 currentLines++;
                 i++;
-            } else if (j < m && b[j] == 0) {
-                result.push_back(0); // Add a new line from Polycarp
+            }
+            else if (j < m && b[j] == 0) {
+                result.push_back(0);
                 currentLines++;
                 j++;
-            } else if (i < n && a[i] > 0 && a[i] <= currentLines) {
-                result.push_back(a[i]); // Modify an existing line by Monocarp
+            }
+            else if (i < n && a[i] > 0 && a[i] <= currentLines) {
+                result.push_back(a[i]);
                 i++;
-            } else if (j < m && b[j] > 0 && b[j] <= currentLines) {
-                result.push_back(b[j]); // Modify an existing line by Polycarp
+            }
+            else if (j < m && b[j] > 0 && b[j] <= currentLines) {
+                result.push_back(b[j]);
                 j++;
-            } else {
+            }
+            else {
                 valid = false;
                 break;
             }
@@ -42,7 +43,8 @@ void solve() {
 
         if (!valid) {
             cout << -1 << endl;
-        } else {
+        }
+        else {
             for (int x : result) {
                 cout << x << " ";
             }

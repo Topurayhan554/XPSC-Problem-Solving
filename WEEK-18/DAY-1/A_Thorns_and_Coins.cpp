@@ -1,39 +1,32 @@
-#include <iostream>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        string s;
+        cin>>s;
 
-int maxCoins(string path) {
-    int n = path.size();
-    int coins = 0;
-    int i = 0;
-    
-    while (i < n) {
-        if (path[i] == '@') {
-            coins++;  // কয়েন পাওয়া যাবে
+        int coins = n, ans = 0;
+        for(int i=0;i<n-1;i++){
+            if(s[i] == '*' && s[i] == s[i+1]){
+                coins = i;
+                break;
+            }
         }
         
-        // দুই সেল লাফানোর চেষ্টা
-        if (i + 2 < n && path[i + 2] != '*') {
-            i += 2;  // দুই সেল এগিয়ে যেতে পারলে
-        } else if (i + 1 < n && path[i + 1] != '*') {
-            i++;  // এক সেল এগিয়ে যেতে পারলে
-        } else {
-            break;  // কোন জায়গায় যাওয়া যাবে না
-        }
-    }
-    
-    return coins;
-}
+        for(int i=0;i<=coins;i++){
 
-int main() {
-    int t;
-    cin >> t;  // Number of test cases
-    while (t--) {
-        int n;
-        cin >> n;
-        string path;
-        cin >> path;
-        cout << maxCoins(path) << endl;
+            if(s[i] == '@'){
+                ans++;
+            }
+        }
+        cout << ans << endl;
     }
     return 0;
 }

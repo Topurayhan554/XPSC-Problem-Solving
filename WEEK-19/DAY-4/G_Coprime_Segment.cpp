@@ -1,62 +1,50 @@
-#include<bits/stdc++.h>
-#include <ext/pb_ds/assoc_container.hpp>
-using namespace __gnu_pbds;
+#include <bits/stdc++.h>
 using namespace std;
+#define int long long
+#define el "\n";
 
-#define ff              first
-#define ss              second
-#define int             long long
-#define pb              push_back
-#define mp              make_pair
-#define pii             pair<int,int>
-#define vi              vector<int>
-#define mii             map<int,int>
-#define pqb             priority_queue<int>
-#define pqs             priority_queue<int,vi,greater<int> >
-#define setbits(x)      __builtin_popcountll(x)
-#define zrobits(x)      __builtin_ctzll(x)
-#define mod             1000000007
-#define inf             1e18
-#define ps(x,y)         fixed<<setprecision(y)<<x
-#define mk(arr,n,type)  type *arr=new type[n];
-#define w(x)            int x; cin>>x; while(x--)
-#define FIO             ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
-mt19937                 rng(chrono::steady_clock::now().time_since_epoch().count());
-
-typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> pbds;
+int gcd(int a, int b)
+{
+    return b == 0 ? a : __gcd(b, a % b);
+}
 
 int32_t main()
 {
-	FIO;
-	w(t)
-	{
-		int n; cin >> n;
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
 
-		if (n < 4)
-			cout << -1 << '\n';
+    int overall_gcd = a[0];
+    for (int i = 1; i < n; i++) {
+        overall_gcd = gcd(overall_gcd, a[i]);
+    }
+    if (overall_gcd != 1) {
+        cout << -1 << el;
+        return 0;
+    }
 
-		else
-		{
-			int odd = (n & 1) ? n : n - 1;
+    int l = 0, min_length = n;
+    
+    for (int r = 0; r < n; r++)
+    {
+        int current_gcd = a[r];
 
-			while (odd >= 1)
-			{
-				cout << odd << ' ';
-				odd -= 2;
-			}
+        for (int j = r; j >= l; j--) {
+            current_gcd = gcd(current_gcd, a[j]);
 
-			cout << 4 << ' ' << 2 << ' ';
+            if (current_gcd == 1) {
+                min_length = min(min_length, r - j + 1);
+                break;
+            }
+        }
+    }
 
-			int even = 6;
-
-			while (even <= n)
-			{
-				cout << even << ' ';
-				even += 2;
-			}
-
-			cout << '\n';
-		}
-	}
-	return 0;
+    cout << min_length << el;
+    return 0;
 }

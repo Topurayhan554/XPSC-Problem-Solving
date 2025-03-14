@@ -4,15 +4,18 @@ using namespace std;
 const int maxN = (1 << 17) + 9;
 int a[maxN], t[maxN * 4];
 
-int merge(int ans_l, int ans_r, int len) {
-   int pw = 0;
-   pw = __lg(len);
-   if (pw % 2 != 0) {
-      return (ans_l | ans_r);
-   }
-   else {
-      return (ans_l ^ ans_r);
-   }
+int merge(int ans_l, int ans_r, int len)
+{
+
+    int pw = 0;
+    pw = __lg(len);
+    if (pw % 2 != 0)
+    {
+        return (ans_l | ans_r);
+    }
+    else {
+       return (ans_l ^ ans_r);
+    }
 }
 
 void build(int n, int b, int e) {
@@ -52,7 +55,8 @@ int main()
       cin >> a[i];
    }
    build(1, 1, n);
-   while (q--) {
+   while (q--)
+   {
       int i, x;
       cin >> i >> x;
       update(1, 1, n, i, x);
